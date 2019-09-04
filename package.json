@@ -1,0 +1,26 @@
+{
+  "name": "fusjs",
+  "version": "1.0.0",
+  "description": "File Upload Server",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daGaiGuanYu/FusJs.git"
+  },
+  "keywords": [
+    "upload",
+    "file"
+  ],
+  "author": "gy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daGaiGuanYu/FusJs/issues"
+  },
+  "homepage": "https://github.com/daGaiGuanYu/FusJs#readme",
+  "dependencies": {
+    "js-knife": "^1.1.10"
+  }
+}
