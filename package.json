@@ -1,6 +1,6 @@
 {
   "name": "xyt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "save file from http.IncomingMessage",
   "main": "src/index.js",
   "scripts": {

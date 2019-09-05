@@ -14,7 +14,7 @@ const http = require('http');
 const xyt = require('xyt');
 
 const filePosition = 'C:\\static';
-const fileWriter = new xyt(filePosition); // 实例化只需要一个存储路径（绝对路径）
+const fileWriter = new xyt(filePosition, 1024*1024*2); // 实例化只需要一个存储路径（绝对路径）
 
 function handler(request, response){
   fileWriter.save(request).then( fileName => {
@@ -29,4 +29,4 @@ http.createServer(handler).listen(1234);
 ```
 
 ### 待解决的问题
-+ 文件大小限制
++ save 方法提供文件配置、文件名、文件最大字节数指定

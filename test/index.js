@@ -2,7 +2,7 @@ const http = require('http');
 const xyt = require('../index');
 
 const filePosition = 'C:\\static';
-const fileWriter = new xyt(filePosition);
+const fileWriter = new xyt(filePosition, 1024*1024*2);
 
 function handler(request, response){
   fileWriter.save(request).then( fileName => {

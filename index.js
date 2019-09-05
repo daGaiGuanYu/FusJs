@@ -5,7 +5,7 @@ class XiaoYangTou {
 
   // path 文件保存的位置
   // createPath 实例化 xyt 时，检测 path 存在与否，不存在则创建目录
-  constructor(path){
+  constructor(path, maxSize){
     if(!path)
       throw Error('未指定文件存储路径');
     if(path[path.length-1] != '\\')
@@ -14,6 +14,9 @@ class XiaoYangTou {
     let pathExist = fs.existsSync(path);
     if(!pathExist)
       fs.mkdirSync(path, { recursive: true });
+
+    if(maxSize)
+      this.maxSize = maxSize;
   }
 
   save(incomingMessage){
@@ -23,6 +26,14 @@ class XiaoYangTou {
     // 如果在 onData 里存数据，那么“是否是最后一个 chunk”则无法判断
     // 因此这里采用，“下一次 onData 存上一次 chunk” 的方案
     return new Promise( (resolve,reject) => {
+      let contentLength = incomingMessage.headers['content-length']; // 此处有两种偏差：1，http 报文里声称的文件大小不可信；2，第一段 chunk 的前段和最后一段 chunk 的后段有非文件内容。另外，10进制与2进制的文件尺寸表示法也可能造成误解
+      if(contentLength == 0){
+        reject(Error('没有数据'));
+        return;
+      }else if(this.maxSize&&contentLength>this.maxSize){
+        reject(Error('文件太大了：'+contentLength));
+        return;
+      }
       let last; // 存 “上一次的 chunk”
       let state = 0; // 0 表示未接收到数据
       let fileName;
@@ -41,7 +52,7 @@ class XiaoYangTou {
       });
       incomingMessage.on('end', () => {
         if(!last){
-          reject('没有数据');
+          reject(Error('没有数据'));
           return;
         }
         let data = getDataFromLastChunk(last);
