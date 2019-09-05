@@ -1,7 +1,7 @@
 {
-  "name": "fusjs",
+  "name": "xyt",
   "version": "1.0.0",
-  "description": "File Upload Server",
+  "description": "save file from http.IncomingMessage",
   "main": "src/index.js",
   "scripts": {
     "test": "test"
