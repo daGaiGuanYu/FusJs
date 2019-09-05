@@ -30,4 +30,3 @@ http.createServer(handler).listen(1234);
 
 ### 待解决的问题
 + 文件大小限制
-+ 没有文件时……

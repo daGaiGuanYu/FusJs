@@ -40,6 +40,10 @@ class XiaoYangTou {
         }
       });
       incomingMessage.on('end', () => {
+        if(!last){
+          reject('没有数据');
+          return;
+        }
         let data = getDataFromLastChunk(last);
         write(data, this.path + fileName, reject);
         resolve(fileName);
@@ -48,7 +52,7 @@ class XiaoYangTou {
         fs.unlinkSync(this.path + fileName);
         reject(Error('文件传输中断, 文件未保存'));
       });
-    })    
+    })
   }
 }
 
