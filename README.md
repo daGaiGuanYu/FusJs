@@ -26,3 +26,7 @@ function handler(request, response){
 
 http.createServer(handler).listen(1234);
 ```
+
+### 待解决的问题
++ 文件传一半不传了怎么整（用大文件试）
++ writableStream 用还是不用
