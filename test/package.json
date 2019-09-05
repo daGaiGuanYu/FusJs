@@ -5,7 +5,5 @@
   "main": "index.js",
   "author": "gy",
   "license": "ISC",
-  "dependencies": {
-    "xyt": "^1.0.1"
-  }
+  "dependencies": {}
 }

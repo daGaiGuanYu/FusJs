@@ -1,5 +1,6 @@
 # XiaoYangTouJs
-把 request 对象（即 http.IncomingMessage）里的文件存到硬盘某处
++ 把 request 对象（即 http.IncomingMessage）里的文件存到硬盘某处
++ 一次只允许保存一个文件
 
 # 如何使用
 ### 安装
@@ -28,5 +29,5 @@ http.createServer(handler).listen(1234);
 ```
 
 ### 待解决的问题
-+ 文件传一半不传了怎么整（用大文件试）
-+ writableStream 用还是不用
++ 文件大小限制
++ 没有文件时……

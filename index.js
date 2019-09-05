@@ -43,7 +43,11 @@ class XiaoYangTou {
         let data = getDataFromLastChunk(last);
         write(data, this.path + fileName, reject);
         resolve(fileName);
-      })
+      });
+      incomingMessage.on('close', () => {
+        fs.unlinkSync(this.path + fileName);
+        reject(Error('文件传输中断, 文件未保存'));
+      });
     })    
   }
 }

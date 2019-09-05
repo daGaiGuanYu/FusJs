@@ -1,5 +1,5 @@
 const http = require('http');
-const xyt = require('xyt');
+const xyt = require('../index');
 
 const filePosition = 'C:\\static';
 const fileWriter = new xyt(filePosition);
@@ -9,6 +9,7 @@ function handler(request, response){
     console.log('文件已保存');
     response.end(fileName);
   }).catch( e => {
+    console.error(e);
     response.end(e.message);
   });
 }
