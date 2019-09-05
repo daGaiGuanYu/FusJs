@@ -1,19 +1,8 @@
-# XiaoYangTouJs
-把 request 对象（即 http.IncomingMessage）里的文件存到硬盘某处
-
-# 如何使用
-### 安装
-```bash
-$ npm install xyt
-```
-
-### 在项目中使用
-``` javascript
 const http = require('http');
 const xyt = require('xyt');
 
 const filePosition = 'C:\\static';
-const fileWriter = new xyt(filePosition); // 实例化只需要一个存储路径（绝对路径）
+const fileWriter = new xyt(filePosition);
 
 function handler(request, response){
   fileWriter.save(request).then( fileName => {
@@ -25,4 +14,4 @@ function handler(request, response){
 }
 
 http.createServer(handler).listen(1234);
-```
+console.log('正在测试，http://localhost:1234');

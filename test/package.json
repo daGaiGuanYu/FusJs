@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test xyt",
+  "main": "index.js",
+  "author": "gy",
+  "license": "ISC",
+  "dependencies": {
+    "xyt": "^1.0.1"
+  }
+}

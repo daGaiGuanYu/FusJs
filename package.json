@@ -1,10 +1,10 @@
 {
   "name": "xyt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "save file from http.IncomingMessage",
   "main": "src/index.js",
   "scripts": {
-    "test": "test"
+    "test": "node ./test/index.js"
   },
   "repository": {
     "type": "git",

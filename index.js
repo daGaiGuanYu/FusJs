@@ -22,7 +22,7 @@ class XiaoYangTou {
     // 第一段好辨识，第一次接收到的就是，最后一段应当是 end 事件被触发时，最后一次收到的数据
     // 如果在 onData 里存数据，那么“是否是最后一个 chunk”则无法判断
     // 因此这里采用，“下一次 onData 存上一次 chunk” 的方案
-    return new Promise( resolve => {
+    return new Promise( (resolve,reject) => {
       let last; // 存 “上一次的 chunk”
       let state = 0; // 0 表示未接收到数据
       let fileName;
@@ -35,21 +35,25 @@ class XiaoYangTou {
         }else{
           state = 2; // 2 标记收到好多段（大于一段）
           // 如果不是第一次，就把上次的数据存起来
-          write(last, this.path + fileName);
+          write(last, this.path + fileName, reject);
           last = chunk;
         }
       });
       incomingMessage.on('end', () => {
         let data = getDataFromLastChunk(last);
-        write(data, this.path + fileName);
+        write(data, this.path + fileName, reject);
         resolve(fileName);
       })
     })    
   }
 }
 
-function write(chunk, file){
-  fs.writeFileSync(file, chunk, { flag: 'a' });
+function write(chunk, file, handleError){
+  try{
+    fs.writeFileSync(file, chunk, { flag: 'a' });
+  }catch(e){
+    handleError(e);
+  }
 }
 
 function getDataFromLastChunk(chunk){
